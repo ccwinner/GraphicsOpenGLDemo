@@ -9,4 +9,6 @@
 
 - 修改header search path和library search path
 - build phase里添加 OpenGL, 下载的glfw, glew.
-- 修改scheme里的工作目录
+- 修改scheme->options里的自定义工作目录为自己项目的地址
+
+<font color=blue>项目中导入头文件#include<OpenGL/gl3.h>，苹果对glew做了定制，所以直接使用glew的内容会有不兼容的问题。</font>
