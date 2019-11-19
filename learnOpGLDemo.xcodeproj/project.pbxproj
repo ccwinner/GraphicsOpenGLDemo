@@ -11,6 +11,7 @@
 		65DBA08E2376A129004C42F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA08D2376A129004C42F6 /* main.cpp */; };
 		65DBA0962376A3EC004C42F6 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DBA0952376A3EC004C42F6 /* libGLEW.2.1.0.dylib */; };
 		65DBA0982376A3F7004C42F6 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DBA0972376A3F7004C42F6 /* libglfw.3.3.dylib */; };
+		65E20F1823839D8B00DF5F79 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E20F1723839D8B00DF5F79 /* Texture.cpp */; };
 		65FE563D237EA0A700FC54E4 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65FE563B237EA0A700FC54E4 /* Mesh.cpp */; };
 		65FE5640237EA22000FC54E4 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65FE563E237EA22000FC54E4 /* Shader.cpp */; };
 		65FE5B29237EAF6F00FC54E4 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65FE5B27237EAF6F00FC54E4 /* Window.cpp */; };
@@ -34,6 +35,9 @@
 		65DBA0952376A3EC004C42F6 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		65DBA0972376A3F7004C42F6 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../usr/local/Cellar/glfw/3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		65DBAF692376B6C0004C42F6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		65E20F112383993400DF5F79 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		65E20F1623839D8B00DF5F79 /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		65E20F1723839D8B00DF5F79 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		65FE563B237EA0A700FC54E4 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		65FE563C237EA0A700FC54E4 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		65FE563E237EA22000FC54E4 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 		65DBA08C2376A129004C42F6 /* learnOpGLDemo */ = {
 			isa = PBXGroup;
 			children = (
+				65E20F112383993400DF5F79 /* stb_image.h */,
 				65DBA08D2376A129004C42F6 /* main.cpp */,
 				65FE563B237EA0A700FC54E4 /* Mesh.cpp */,
 				65FE563C237EA0A700FC54E4 /* Mesh.hpp */,
@@ -85,8 +90,9 @@
 				65FE563F237EA22000FC54E4 /* Shader.hpp */,
 				65FE5B27237EAF6F00FC54E4 /* Window.cpp */,
 				65FE5B28237EAF6F00FC54E4 /* Window.hpp */,
-				65FE5B2A237EB02500FC54E4 /* shader.vert */,
-				65FE5B2B237EB04600FC54E4 /* shader.frag */,
+				65E20F1723839D8B00DF5F79 /* Texture.cpp */,
+				65E20F1623839D8B00DF5F79 /* Texture.hpp */,
+				65E20F122383993E00DF5F79 /* Resource */,
 			);
 			path = learnOpGLDemo;
 			sourceTree = "<group>";
@@ -99,6 +105,15 @@
 				65DBA0952376A3EC004C42F6 /* libGLEW.2.1.0.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65E20F122383993E00DF5F79 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				65FE5B2A237EB02500FC54E4 /* shader.vert */,
+				65FE5B2B237EB04600FC54E4 /* shader.frag */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65E20F1823839D8B00DF5F79 /* Texture.cpp in Sources */,
 				65FE563D237EA0A700FC54E4 /* Mesh.cpp in Sources */,
 				65FE5640237EA22000FC54E4 /* Shader.cpp in Sources */,
 				65DBA08E2376A129004C42F6 /* main.cpp in Sources */,

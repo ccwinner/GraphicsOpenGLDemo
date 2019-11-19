@@ -21,18 +21,21 @@
 #include "Window.hpp"
 #include "Mesh.hpp"
 #include "Shader.hpp"
+#include "Texture.hpp"
 
 const float toRadians = 3.14159265f / 180.0f;
+
+Texture brickTex, dirtTex;
 
 Window mainWindow;
 std::vector<Mesh*> meshList;
 std::vector<Shader> shaderList;
 
 // Vertex Shader
-static const char* vShader = "./shader.vert";
+static const char* vShader = "./Resource/shader.vert";
 
 // Fragment Shader
-static const char* fShader = "./shader.frag";
+static const char* fShader = "./Resource/shader.frag";
 
 void CreateObjects()
 {
@@ -43,19 +46,21 @@ void CreateObjects()
         0, 1, 2
     };
 
+    //x,y,z,u,v
     GLfloat vertices[] = {
-        -1.0f, -1.0f, 0.0f,
-        0.0f, -1.0f, 1.0f,
-        1.0f, -1.0f, 0.0f,
-        0.0f, 1.0f, 0.0f
+        -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, -1.0f, 1.0f, 0.5f, 0.0f,
+        1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.5f, 1.0f
     };
 
     Mesh *obj1 = new Mesh();
-    obj1->CreateMesh(vertices, indices, 12, 12);
+    //包含完整的vertices
+    obj1->CreateMesh(vertices, indices, 20, 12);
     meshList.push_back(obj1);
 
     Mesh *obj2 = new Mesh();
-    obj2->CreateMesh(vertices, indices, 12, 12);
+    obj2->CreateMesh(vertices, indices, 20, 12);
     meshList.push_back(obj2);
 }
 
@@ -66,6 +71,13 @@ void CreateShaders()
     shaderList.push_back(*shader1);
 }
 
+void CreateTextures() {
+    brickTex = Texture("./Resource/brick.png");
+    brickTex.loadTexture();
+    dirtTex = Texture("./Resource/dirt.png");
+    dirtTex.loadTexture();
+}
+
 int main()
 {
 
@@ -74,6 +86,7 @@ int main()
 
     CreateObjects();
     CreateShaders();
+    CreateTextures();
 
     GLuint uniformProjection = 0, uniformModel = 0;
     glm::mat4 projection = glm::perspective(45.0f, (GLfloat)mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
@@ -98,12 +111,14 @@ int main()
         model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+        brickTex.useTexture();
         meshList[0]->RenderMesh();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 1.0f, -2.5f));
         model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+        dirtTex.useTexture();
         meshList[1]->RenderMesh();
 
         glUseProgram(0);

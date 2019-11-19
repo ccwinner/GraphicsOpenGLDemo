@@ -56,7 +56,7 @@ int Window::Initialise()
     //callbacks
     createCallbacks();
     //禁用鼠标的移动，但是回调还能执行
-    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+//    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     // Allow modern extension access
     // on Mac, disable this feature
 //    glewExperimental = GL_TRUE;
@@ -72,7 +72,7 @@ int Window::Initialise()
     //开启深度测试，否则展示的三维物体没有质感.
     glEnable(GL_DEPTH_TEST);
 
-    // Create Viewport
+    // Create Viewport, 将裁剪后的结果转为屏幕显示坐标
     glViewport(0, 0, bufferWidth, bufferHeight);
     // 注册一个窗口动作的回调之前，设置回调使用到的数据（第二个参数）
     // 可以通过glfwGetWindowUserPointer来获取设置的数据.
