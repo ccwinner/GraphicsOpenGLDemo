@@ -47,6 +47,7 @@ void CreateObjects()
     };
 
     //x,y,z,u,v
+    //u和v可以超过0到1的范围，超过以后出发wrapper配置的效果
     GLfloat vertices[] = {
         -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
         0.0f, -1.0f, 1.0f, 0.5f, 0.0f,
