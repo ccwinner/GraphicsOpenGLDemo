@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		652E7CFC237D2776005B69C7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DBAF692376B6C0004C42F6 /* OpenGL.framework */; };
+		6588EE0A23864F7400508C69 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6588EE0823864F7400508C69 /* Camera.cpp */; };
 		65DBA08E2376A129004C42F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA08D2376A129004C42F6 /* main.cpp */; };
 		65DBA0962376A3EC004C42F6 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DBA0952376A3EC004C42F6 /* libGLEW.2.1.0.dylib */; };
 		65DBA0982376A3F7004C42F6 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DBA0972376A3F7004C42F6 /* libglfw.3.3.dylib */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6588EE0823864F7400508C69 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		6588EE0923864F7400508C69 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		65DBA08A2376A129004C42F6 /* learnOpGLDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = learnOpGLDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBA08D2376A129004C42F6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		65DBA0952376A3EC004C42F6 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				65FE5B28237EAF6F00FC54E4 /* Window.hpp */,
 				65E20F1723839D8B00DF5F79 /* Texture.cpp */,
 				65E20F1623839D8B00DF5F79 /* Texture.hpp */,
+				6588EE0823864F7400508C69 /* Camera.cpp */,
+				6588EE0923864F7400508C69 /* Camera.hpp */,
 				65E20F122383993E00DF5F79 /* Resource */,
 			);
 			path = learnOpGLDemo;
@@ -177,6 +182,7 @@
 				65FE563D237EA0A700FC54E4 /* Mesh.cpp in Sources */,
 				65FE5640237EA22000FC54E4 /* Shader.cpp in Sources */,
 				65DBA08E2376A129004C42F6 /* main.cpp in Sources */,
+				6588EE0A23864F7400508C69 /* Camera.cpp in Sources */,
 				65FE5B29237EAF6F00FC54E4 /* Window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

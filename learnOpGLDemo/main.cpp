@@ -22,8 +22,12 @@
 #include "Mesh.hpp"
 #include "Shader.hpp"
 #include "Texture.hpp"
+#include "Camera.hpp"
 
 const float toRadians = 3.14159265f / 180.0f;
+
+GLfloat deltaTime = 0.0f;
+GLfloat lastTime = 0.0f;
 
 Texture brickTex, dirtTex;
 
@@ -31,6 +35,7 @@ Window mainWindow;
 std::vector<Mesh*> meshList;
 std::vector<Shader> shaderList;
 
+Camera camera;
 // Vertex Shader
 static const char* vShader = "./Resource/shader.vert";
 
@@ -79,6 +84,10 @@ void CreateTextures() {
     dirtTex.loadTexture();
 }
 
+void CreateCamera() {
+    camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.1f, 1.f);
+}
+
 int main()
 {
 
@@ -88,30 +97,41 @@ int main()
     CreateObjects();
     CreateShaders();
     CreateTextures();
+    CreateCamera();
 
-    GLuint uniformProjection = 0, uniformModel = 0;
+    GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0;
     glm::mat4 projection = glm::perspective(45.0f, (GLfloat)mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
 
     // Loop until window closed
     while (!mainWindow.getShouldClose())
     {
+        GLfloat now = glfwGetTime(); // SDL_GetPerformanceCounter();
+        deltaTime = now - lastTime; // (now - lastTime)*1000/SDL_GetPerformanceFrequency();
+        lastTime = now;
+        
         // Get + Handle User Input
         glfwPollEvents();
+        
+        //有点类似Unity的在Update回调里加入键盘操作的逻辑了
+        camera.keyControl(mainWindow.getsKeys(), deltaTime);
 
         // Clear the window
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         shaderList[0].UseShader();
-        uniformModel = shaderList[0].GetModelLocation();
-        uniformProjection = shaderList[0].GetProjectionLocation();
-
+        uniformModel = shaderList.front().GetModelLocation();
+        uniformProjection = shaderList.front().GetProjectionLocation();
+        uniformView = shaderList.front().GetViewLocation();
+        
         glm::mat4 model(1.0f);
 
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, -2.5f));
         model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.getViewMatrix()));
+//                glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
         brickTex.useTexture();
         meshList[0]->RenderMesh();
 
@@ -119,7 +139,6 @@ int main()
         model = glm::translate(model, glm::vec3(0.0f, 1.0f, -2.5f));
         model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-        dirtTex.useTexture();
         meshList[1]->RenderMesh();
 
         glUseProgram(0);
