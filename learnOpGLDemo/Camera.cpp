@@ -42,6 +42,28 @@ void Camera::keyControl(bool* keys, GLfloat deltaTime) {
     }
 }
 
+void Camera::mouseControl(GLfloat xChange, GLfloat yChange)
+{
+    xChange *= turnSpeed;
+    yChange *= turnSpeed;
+
+    yaw += xChange;
+    pitch += yChange;
+
+    if (pitch > 89.0f)
+    {
+        pitch = 89.0f;
+    }
+
+    if (pitch < -89.0f)
+    {
+        pitch = -89.0f;
+    }
+
+    update();
+}
+
+
 glm::mat4 Camera::getViewMatrix() {
     //lookAt输入参数：照相机位置，目标物体位置，up向量(不是worldUp)
     return glm::lookAt(position, position + front, up);

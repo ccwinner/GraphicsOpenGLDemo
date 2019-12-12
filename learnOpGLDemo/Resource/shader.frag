@@ -3,10 +3,18 @@
 in vec4 vCol;
 in vec2 vTex;
 
-uniform sampler2D theTexture;
 out vec4 colour;
+
+struct DirectionLight {
+    vec3 colour;
+    float ambientIntensity;
+};
+
+uniform sampler2D theTexture;
+uniform DirectionLight directionLight;
 
 void main()
 {
-    colour = texture(theTexture, vTex) * vCol;
+    vec4 ambientColour = vec4(directionLight.colour, 1.0f) * directionLight.ambientIntensity;
+    colour = texture(theTexture, vTex) * ambientColour * vCol;
 }

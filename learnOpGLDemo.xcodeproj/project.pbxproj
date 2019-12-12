@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6513CA8423A1DA1F004A22E0 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6513CA8223A1DA1F004A22E0 /* Light.cpp */; };
 		652E7CFC237D2776005B69C7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DBAF692376B6C0004C42F6 /* OpenGL.framework */; };
 		6588EE0A23864F7400508C69 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6588EE0823864F7400508C69 /* Camera.cpp */; };
 		65DBA08E2376A129004C42F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA08D2376A129004C42F6 /* main.cpp */; };
@@ -31,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6513CA8223A1DA1F004A22E0 /* Light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
+		6513CA8323A1DA1F004A22E0 /* Light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
 		6588EE0823864F7400508C69 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		6588EE0923864F7400508C69 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		65DBA08A2376A129004C42F6 /* learnOpGLDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = learnOpGLDemo; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,8 @@
 				65E20F1623839D8B00DF5F79 /* Texture.hpp */,
 				6588EE0823864F7400508C69 /* Camera.cpp */,
 				6588EE0923864F7400508C69 /* Camera.hpp */,
+				6513CA8323A1DA1F004A22E0 /* Light.hpp */,
+				6513CA8223A1DA1F004A22E0 /* Light.cpp */,
 				65E20F122383993E00DF5F79 /* Resource */,
 			);
 			path = learnOpGLDemo;
@@ -178,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6513CA8423A1DA1F004A22E0 /* Light.cpp in Sources */,
 				65E20F1823839D8B00DF5F79 /* Texture.cpp in Sources */,
 				65FE563D237EA0A700FC54E4 /* Mesh.cpp in Sources */,
 				65FE5640237EA22000FC54E4 /* Shader.cpp in Sources */,

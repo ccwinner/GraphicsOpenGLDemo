@@ -23,13 +23,14 @@
 #include "Shader.hpp"
 #include "Texture.hpp"
 #include "Camera.hpp"
-
-const float toRadians = 3.14159265f / 180.0f;
+#include "Light.hpp"
 
 GLfloat deltaTime = 0.0f;
 GLfloat lastTime = 0.0f;
 
 Texture brickTex, dirtTex;
+
+Light mainLight;
 
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -85,7 +86,11 @@ void CreateTextures() {
 }
 
 void CreateCamera() {
-    camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.1f, 1.f);
+    camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 5.0f, 0.5f);
+}
+
+void CreateLight() {
+    mainLight = Light(1.f, 1.f, 1.f, 0.8f);
 }
 
 int main()
@@ -98,8 +103,10 @@ int main()
     CreateShaders();
     CreateTextures();
     CreateCamera();
+    CreateLight();
 
     GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0;
+    GLuint uniformAmbientColour = 0, uniformAmbientIntensity = 0;
     glm::mat4 projection = glm::perspective(45.0f, (GLfloat)mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
 
     // Loop until window closed
@@ -114,6 +121,7 @@ int main()
         
         //有点类似Unity的在Update回调里加入键盘操作的逻辑了
         camera.keyControl(mainWindow.getsKeys(), deltaTime);
+        camera.mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
 
         // Clear the window
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -123,6 +131,10 @@ int main()
         uniformModel = shaderList.front().GetModelLocation();
         uniformProjection = shaderList.front().GetProjectionLocation();
         uniformView = shaderList.front().GetViewLocation();
+        uniformAmbientIntensity = shaderList.front().GetAmbientIntensityLocation();
+        uniformAmbientColour = shaderList.front().GetAmbientColourLocation();
+        
+        mainLight.UseLight(uniformAmbientIntensity, uniformAmbientColour);
         
         glm::mat4 model(1.0f);
 
@@ -132,6 +144,7 @@ int main()
         glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.getViewMatrix()));
 //                glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
+        
         brickTex.useTexture();
         meshList[0]->RenderMesh();
 
